@@ -1,0 +1,9 @@
+{
+	"name": "WCH-Datafactory-Dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "167e9772-2eb8-4ad8-978a-6d4d40d76da9",
+		"tenantId": "2a00866d-cdf9-4bc6-999a-3503317e348e"
+	}
+}
