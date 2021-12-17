@@ -1,0 +1,127 @@
+{
+	"name": "USCB_Metadata_B21100",
+	"properties": {
+		"activities": [
+			{
+				"name": "B21100_Medataload",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "RAW Data ColumnName",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "RAW Data ColumnName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Estimate RAW ColumnName",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Estimate Raw ColumnName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Display Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Display Name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "User Friendly Column NamesData_PROCESSED",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "User Friendly Column NamesData_PROCESSED",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "User Friendly Column Names_Report",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "User Friendly Column Names_Report",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "B21100_Metadata_IP_DS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "B21100_Metadata_OP_DS",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "USCB"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-15T09:12:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

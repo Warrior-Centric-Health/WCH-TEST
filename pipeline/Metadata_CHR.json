@@ -1,0 +1,127 @@
+{
+	"name": "Metadata_CHR",
+	"properties": {
+		"activities": [
+			{
+				"name": "Metadata_CHR",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Required Column Names(RAW)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Required Column Names(RAW)",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Meta Data",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Meta Data",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Display Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Display Name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "User Friendly Column Names(Data)- PROCESSED",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "User Friendly Column Names(Data)- PROCESSED",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "User Friendly Column Names(Report)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "User Friendly Column Names(Report)",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Metadata_CHR_IP_DS",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Metadata_CHR_OP_DS",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "USCB"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-15T09:12:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
